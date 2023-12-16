@@ -1,4 +1,4 @@
-package com.example.demo.deber.modelo;
+package com.example.demo.repo.modelo;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
