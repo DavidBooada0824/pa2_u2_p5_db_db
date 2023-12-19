@@ -1,66 +1,48 @@
 package com.example.demo;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.demo.repo.modelo.Alumno;
-import com.example.demo.service.IAlumnoService;
-import com.example.demo.service.IEstudianteService;
+import com.example.demo.repo.modelo.Ciudadano;
+import com.example.demo.repo.modelo.Empleado;
+import com.example.demo.service.ICiudadanoService;
+import com.example.demo.service.IEmpledoService;
 
 @SpringBootApplication
-public class Pa2U2P5DbDbApplication implements CommandLineRunner{
-	
+public class Pa2U2P5DbDbApplication implements CommandLineRunner {
+
 	@Autowired
-	private IEstudianteService iEstudianteService;
+	private ICiudadanoService iCiudadanoService;
+
 	@Autowired
-	private IAlumnoService iAlumnoService;
-	
+	private IEmpledoService iEmpledoService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P5DbDbApplication.class, args);
 	}
 
-
 	@Override
 	public void run(String... args) throws Exception {
-	
-//		
-//		Estudiante estu = new Estudiante();
-//		
-//		estu.setApellido("Boada");
-//		estu.setCedula("1720030715");
-//		estu.setNombre("Marlon");
-//		
-//		//this.iEstudianteService.insertar(estu);
-//		
-//		System.out.println(this.iEstudianteService.encontrar(1));
-//		
-//		estu.setNombre("Alejandro");
-//		this.iEstudianteService.modificar(estu);
-//		
-//		//eliminar
-//		this.iEstudianteService.borrar(2);
-		
-		Alumno alu = new Alumno();
-		
-		alu.setNombre("David");
-		//this.iAlumnoService.insertar(alu);
-		
-		//this.iAlumnoService.encontar(2);
-		Alumno alu2 = this.iAlumnoService.encontar(1);
-		alu2.setNombre("Xavier");
-	
-		this.iAlumnoService.modificar(alu2);
-		
 
+		Ciudadano ciu = new Ciudadano();
+		ciu.setApellido("Boada");
+		ciu.setNombre("David");
+		// this.iCiudadanoService.ingresar(ciu);
+		Empleado emple = new Empleado();
+		emple.setFechaIngreso(LocalDateTime.now());
+		emple.setSalario(new BigDecimal(1200));
+		// this.iEmpledoService.ingresar(emple);
+
+		Ciudadano ciu2 = this.iCiudadanoService.buscar(1);
+		System.out.println(ciu2);
 		
-		
-		
-		
+		ciu2.setEmpleado(emple);
+		this.iCiudadanoService.ingresar(ciu2);
 	}
-	
-	
 
 }

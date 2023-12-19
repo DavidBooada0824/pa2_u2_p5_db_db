@@ -5,26 +5,29 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "estudiante")
-public class Estudiante {
+@Table(name = "ciudadano")
+public class Ciudadano {
 
+	@SequenceGenerator(name = "seq_ciu", sequenceName = "seq_ciu", allocationSize = 1)
+	@GeneratedValue(generator = "seq_ciu", strategy = GenerationType.SEQUENCE)
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_estudiante")
-	@SequenceGenerator(name = "seq_estudiante", sequenceName = "seq_estudiante", allocationSize = 1)
-	@Column(name = "estu_id")
+	@Column(name = "ciu_id")
 	private Integer id;
-	@Column(name = "estu_nombre")
+	@Column(name = "ciu_nombre")
 	private String nombre;
-	@Column(name = "estu_apellido")
+	@Column(name = "ciu_apellido")
 	private String apellido;
-	@Column(name = "estu_cedula")
-	private String cedula;
 
-	// GET Y SET
+	//relacion one to one
+	@OneToOne(mappedBy = "ciudadano")
+	//en la table madre, master
+	private Empleado empleado;
+
 	public Integer getId() {
 		return id;
 	}
@@ -49,17 +52,20 @@ public class Estudiante {
 		this.apellido = apellido;
 	}
 
-	public String getCedula() {
-		return cedula;
+	public Empleado getEmpleado() {
+		return empleado;
 	}
 
-	public void setCedula(String cedula) {
-		this.cedula = cedula;
+	public void setEmpleado(Empleado empleado) {
+		this.empleado = empleado;
 	}
 
 	@Override
 	public String toString() {
-		return "Estudiante [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula + "]";
+		return "Ciudadano [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", empleado=" + empleado + "]";
 	}
 
+
+	
+	
 }
