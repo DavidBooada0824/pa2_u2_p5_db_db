@@ -1,5 +1,6 @@
 package com.example.demo.repo.modelo;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,7 +25,7 @@ public class Ciudadano {
 	private String apellido;
 
 	//relacion one to one
-	@OneToOne(mappedBy = "ciudadano")
+	@OneToOne(mappedBy = "ciudadano",cascade = CascadeType.ALL)
 	//en la table madre, master
 	private Empleado empleado;
 
