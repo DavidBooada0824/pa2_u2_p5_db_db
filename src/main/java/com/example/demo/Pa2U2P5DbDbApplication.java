@@ -1,26 +1,23 @@
 package com.example.demo;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.demo.repo.modelo.Habitacion;
-import com.example.demo.repo.modelo.Hotel;
-import com.example.demo.service.IHabitacionService;
-import com.example.demo.service.IHotelService;
+import com.example.demo.repo.modelo.Autor;
+import com.example.demo.repo.modelo.Libro;
+import com.example.demo.service.ILibroService;
 
 @SpringBootApplication
 public class Pa2U2P5DbDbApplication implements CommandLineRunner {
 
 	@Autowired
-	private IHotelService iHotelService;
-	
-	@Autowired
-	private IHabitacionService iHabitacionService;
+	private ILibroService iLibroService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P5DbDbApplication.class, args);
@@ -29,32 +26,33 @@ public class Pa2U2P5DbDbApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 	
-		Hotel hote1 = new Hotel();
 
-		hote1.setDireccion("Universitaria");
-		hote1.setNombre("ElHueco");
+		Set<Autor> autores = new HashSet<Autor>();
+		Set<Libro> libros = new HashSet<Libro>();
 
-		Habitacion habi1 = new Habitacion();
-
-		habi1.setClase("Premium");
-		habi1.setHotel(hote1);
-		habi1.setNumero("1A");
-
-		Habitacion habi2 = new Habitacion();
-
-		habi2.setClase("Premium");
-		habi2.setHotel(hote1);
-		habi2.setNumero("1B");
-
-		List<Habitacion> habitaciones = new ArrayList<>();
-		habitaciones.add(habi1);
-		habitaciones.add(habi2);
-		hote1.setHabitaciones(habitaciones);
+		Autor autor = new Autor();
+		autor.setNacionalidad("Argentino");
+		autor.setNombre("Paolo ");
 		
-		this.iHabitacionService.ingresar(habi1);
+		Autor autor2 = new Autor();
+		autor2.setNacionalidad("Frances");
+		autor2.setNombre("Edwin");	
 		
-
+		autores.add(autor);
+		autores.add(autor2);		
 		
+		Libro libro = new Libro();
+		libro.setAutores(null);
+		libro.setFechaPublicacion(LocalDate.now());
+		libro.setTitulo("20 poemas de amor y Una cancvion desesperada");
+		libro.setAutores(autores);
+		
+		libros.add(libro);
+		
+		autor.setLibro(libros);
+		autor2.setLibro(libros);
+		
+		this.iLibroService.guardar(libro);
 
 	}
 
