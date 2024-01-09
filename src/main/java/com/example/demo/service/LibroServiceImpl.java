@@ -3,42 +3,50 @@ package com.example.demo.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.repo.ILibroRepo;
+import com.example.demo.repo.ILibroRepository;
 import com.example.demo.repo.modelo.Libro;
+import com.example.demo.repo.modelo.Libro2;
 
 @Service
-public class LibroServiceImpl implements ILibroService{
-	
+public class LibroServiceImpl implements ILibroService {
+
 	@Autowired
-	private ILibroRepo iLibroRepo;
+	private ILibroRepository iLibroRepository;
 
 	@Override
 	public void guardar(Libro libro) {
 		// TODO Auto-generated method stub
-		this.iLibroRepo.insertar(libro);
-		
+		this.iLibroRepository.insertar(libro);
 	}
 
 	@Override
 	public Libro buscar(Integer id) {
 		// TODO Auto-generated method stub
-		return this.iLibroRepo.seleccionar(id);
+		return this.iLibroRepository.seleccionar(id);
 	}
 
 	@Override
-	public void modificar(Libro libro) {
+	public void actualizar(Libro libro) {
 		// TODO Auto-generated method stub
-		this.iLibroRepo.actualizar(libro);
-		
+		this.iLibroRepository.actualizar(libro);
 	}
 
 	@Override
-	public void borrar(Integer id) {
+	public void eliminar(Integer id) {
 		// TODO Auto-generated method stub
-		this.iLibroRepo.eliminar(id);
-		
+		this.iLibroRepository.eliminar(id);
 	}
-	
-	
+
+	@Override
+	public void guardar(Libro2 libro2) {
+		// TODO Auto-generated method stub
+		this.iLibroRepository.insertar(libro2);
+	}
+
+	@Override
+	public Libro buscarNombre(String nombre) {
+		// TODO Auto-generated method stub
+		return this.iLibroRepository.selecionarNombre(nombre);
+	}
 
 }
