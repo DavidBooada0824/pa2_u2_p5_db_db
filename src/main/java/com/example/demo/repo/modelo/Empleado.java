@@ -3,18 +3,22 @@ package com.example.demo.repo.modelo;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "empleado")
+@NamedQuery(name = "Empleado.buscarPorApellido", query = "SELECT e FROM Empleado e WHERE e.ciudadano.apellido=:DatoApellido")
+@NamedQuery(name = "Empleado.buscarPorNombre", query = "SELECT e FROM Empleado e WHERE e.ciudadano.nombre=:DatoNombre")
 public class Empleado {
 
 	@SequenceGenerator(name = "seq_empleado", sequenceName = "seq_empleado", allocationSize = 1)
@@ -29,7 +33,7 @@ public class Empleado {
 	@Column(name = "empl_fecha_ingreso")
 	private LocalDateTime fechaIngreso;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "empleado_id_ciudadano")
 	private Ciudadano ciudadano;
 

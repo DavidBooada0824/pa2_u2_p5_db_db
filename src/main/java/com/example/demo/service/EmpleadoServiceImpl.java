@@ -35,4 +35,16 @@ public class EmpleadoServiceImpl implements IEmpleadoService {
 		this.iEmpleadoRepo.eliminar(id);
 	}
 
+	@Override
+	public Empleado buscarPorApellidoNamed(String apellido) {
+		// TODO Auto-generated method stub
+		return this.iEmpleadoRepo.selecionarPorApellidoNamed(apellido);
+	}
+
+	@Override
+	public Empleado buscarPorApellidonNombre(String nombre) {
+		// TODO Auto-generated method stub
+		return this.iEmpleadoRepo.selecionarPorApellidoNombre(nombre);
+	}
+
 }

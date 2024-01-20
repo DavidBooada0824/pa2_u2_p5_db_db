@@ -34,6 +34,9 @@ public class Pa2U2P5DbDbApplication implements CommandLineRunner {
 		ciu.setApellido("Boada");
 		ciu.setNombre("David");
 		ciu.setCedula("1720030723");
+		ciu.setEdad("18");
+		ciu.setGenero("masculino");
+		ciu.setHobbie("basquet");
 
 		// this.iCiudadanoService.ingresar(ciu);
 
@@ -42,17 +45,48 @@ public class Pa2U2P5DbDbApplication implements CommandLineRunner {
 		emple.setSalario(new BigDecimal(1200));
 		emple.setCiudadano(ciu);
 
-		// this.iEmpleadoService.ingresar(emple);
+		//this.iEmpleadoService.ingresar(emple);
 
-		Empleado emple1 = this.iCiudadanoService.buscarPorCedula("1720030723");
+		System.out.println("NamedQuery");
+		Ciudadano NamedQuery1 = this.iCiudadanoService.buscarPorApellidoNamed("Boada");
+		System.err.println("NamedQuery 1 ");
+		System.out.println("\t" + NamedQuery1);
+		Empleado NamedQuery2 = this.iEmpleadoService.buscarPorApellidoNamed("Boada");
+		System.err.println("NamedQuery 2 : ");
+		System.out.println("\t" + NamedQuery2);
+		Empleado NamedQuery3 = this.iEmpleadoService.buscarPorApellidonNombre("David");
+		System.err.println("NamedQuery 3 : ");
+		System.out.println("\t" + NamedQuery3);
 
-		System.out.println(emple1);
+		Ciudadano NamedQuery4 = this.iCiudadanoService.buscarPorNombreNamed("David");
+		System.err.println("NamedQuery 4 : ");
+		System.out.println("\t" + NamedQuery3);
 
+		Ciudadano NamedQuery5 = this.iCiudadanoService.buscarPorCedulaNamed("1720030723");
+		System.err.println("NamedQuery 5 : ");
+		System.out.println("\t" + NamedQuery5);
+
+		System.out.println("NativeQuery");
+
+		Ciudadano NativeQuery1 = this.iCiudadanoService.buscarPorNombreNative("David");
+		System.err.println("NativeQuery1 : ");
+		System.out.println("\t" + NativeQuery1);
+
+		Ciudadano NativeQuery2 = this.iCiudadanoService.buscarPorApellidoNative("Boada");
+		System.err.println("NativeQuery2 : ");
+		System.out.println("\t" + NativeQuery2);
+		Ciudadano NativeQuery3 = this.iCiudadanoService.buscarPorEdadNative("18");
+		System.err.println("NativeQuery3 : ");
+		System.out.println("\t" + NativeQuery3);
 		
-
-		Ciudadano ciud1 = this.iCiudadanoService.selecionarPorCedulaCiu("1720030723");
-		System.err.println("Impresion NativeQuery");
-		System.out.println(ciud1);
+		Ciudadano NativeQuery4 = this.iCiudadanoService.buscarPorHobbieNative("basquet");
+		System.err.println("NativeQuery4 : ");
+		System.out.println("\t" + NativeQuery4);
+		
+		Ciudadano NativeQuery5 = this.iCiudadanoService.buscarPorGeneroNative("masculino");
+		System.err.println("NativeQuery5 : ");
+		System.out.println("\t" + NativeQuery5);
+		
 
 	}
 

@@ -48,4 +48,52 @@ public class CiudadanoServiceImpl implements ICiudadanoService {
 		return this.iCiudadanoRepo.selecionarPorCedulaCiu(cedula);
 	}
 
+	@Override
+	public Ciudadano buscarPorApellidoNamed(String apellido) {
+
+		return this.iCiudadanoRepo.selecionarPorApellidoNamed(apellido);
+	}
+
+	@Override
+	public Ciudadano buscarPorNombreNamed(String nombre) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepo.selecionarPorNombreNamed(nombre);
+	}
+
+	@Override
+	public Ciudadano buscarPorCedulaNamed(String cedula) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepo.selecionarPorCedulaNamed(cedula);
+	}
+
+	@Override
+	public Ciudadano buscarPorApellidoNative(String apellido) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepo.selecionarPorApellidoNative(apellido);
+	}
+
+	@Override
+	public Ciudadano buscarPorNombreNative(String nombre) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepo.selecionarPorNombreNative(nombre);
+	}
+
+	@Override
+	public Ciudadano buscarPorEdadNative(String edad) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepo.selecionarPorEdadNative(edad);
+	}
+
+	@Override
+	public Ciudadano buscarPorHobbieNative(String hobbie) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepo.selecionarPorHobbieNative(hobbie);
+	}
+
+	@Override
+	public Ciudadano buscarPorGeneroNative(String genero) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepo.selecionarPorGeneroNative(genero);
+	}
+
 }

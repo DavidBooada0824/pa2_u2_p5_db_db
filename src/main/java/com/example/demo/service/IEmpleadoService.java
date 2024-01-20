@@ -12,4 +12,9 @@ public interface IEmpleadoService {
 
 	public void borrar(Integer id);
 
+	// named
+	public Empleado buscarPorApellidoNamed(String apellido);
+	
+	public Empleado buscarPorApellidonNombre(String nombre);
+
 }

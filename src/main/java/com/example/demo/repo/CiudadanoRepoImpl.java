@@ -52,8 +52,78 @@ public class CiudadanoRepoImpl implements ICiudadanoRepo {
 
 	@Override
 	public Ciudadano selecionarPorCedulaCiu(String cedula) {
-		Query myQuery = this.entityManager.createNativeQuery("SELECT * FROM ciudadano c WHERE  c.ciud_cedula=:cedula", Ciudadano.class);
+		Query myQuery = this.entityManager.createNativeQuery("SELECT * FROM ciudadano c WHERE  c.ciud_cedula=:cedula",
+				Ciudadano.class);
 		myQuery.setParameter("cedula", cedula);
+
+		return (Ciudadano) myQuery.getSingleResult();
+	}
+
+	@Override
+	public Ciudadano selecionarPorApellidoNamed(String apellido) {
+		TypedQuery<Ciudadano> myQuery = this.entityManager.createNamedQuery("Ciudadano.buscarPorApellido",
+				Ciudadano.class);
+		myQuery.setParameter("DatoApellido", apellido);
+		return myQuery.getSingleResult();
+	}
+
+	@Override
+	public Ciudadano selecionarPorNombreNamed(String nombre) {
+		TypedQuery<Ciudadano> myQuery = this.entityManager.createNamedQuery("Ciudadano.buscarPorNombre",
+				Ciudadano.class);
+		myQuery.setParameter("DatoNombre", nombre);
+		return myQuery.getSingleResult();
+	}
+
+	@Override
+	public Ciudadano selecionarPorCedulaNamed(String cedula) {
+		TypedQuery<Ciudadano> myQuery = this.entityManager.createNamedQuery("Ciudadano.buscarPorCedula",
+				Ciudadano.class);
+		myQuery.setParameter("DatoCedula", cedula);
+		return myQuery.getSingleResult();
+	}
+
+	@Override
+	public Ciudadano selecionarPorApellidoNative(String apellido) {
+		Query myQuery = this.entityManager
+				.createNativeQuery("SELECT * FROM ciudadano c WHERE c.ciud_apellido=:DatoApellido ", Ciudadano.class);
+		myQuery.setParameter("DatoApellido", apellido);
+
+		return (Ciudadano) myQuery.getSingleResult();
+	}
+
+	@Override
+	public Ciudadano selecionarPorNombreNative(String nombre) {
+		Query myQuery = this.entityManager
+				.createNativeQuery("SELECT * FROM ciudadano c WHERE c.ciud_nombre=:DatoNombre ", Ciudadano.class);
+		myQuery.setParameter("DatoNombre", nombre);
+
+		return (Ciudadano) myQuery.getSingleResult();
+	}
+
+	@Override
+	public Ciudadano selecionarPorEdadNative(String edad) {
+		Query myQuery = this.entityManager.createNativeQuery("SELECT * FROM ciudadano c WHERE c.ciud_edad=:DatoEdad ",
+				Ciudadano.class);
+		myQuery.setParameter("DatoEdad", edad);
+
+		return (Ciudadano) myQuery.getSingleResult();
+	}
+
+	@Override
+	public Ciudadano selecionarPorHobbieNative(String hobbie) {
+		Query myQuery = this.entityManager
+				.createNativeQuery("SELECT * FROM ciudadano c WHERE c.ciud_hobbie=:DatoHobbie ", Ciudadano.class);
+		myQuery.setParameter("DatoHobbie", hobbie);
+
+		return (Ciudadano) myQuery.getSingleResult();
+	}
+
+	@Override
+	public Ciudadano selecionarPorGeneroNative(String genero) {
+		Query myQuery = this.entityManager
+				.createNativeQuery("SELECT * FROM ciudadano c WHERE c.ciud_genero=:DatoGenero ", Ciudadano.class);
+		myQuery.setParameter("DatoGenero", genero);
 
 		return (Ciudadano) myQuery.getSingleResult();
 	}

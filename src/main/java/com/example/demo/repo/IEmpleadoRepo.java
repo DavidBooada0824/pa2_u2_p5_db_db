@@ -12,4 +12,9 @@ public interface IEmpleadoRepo {
 
 	public void eliminar(Integer id);
 
+	// Named
+	public Empleado selecionarPorApellidoNamed(String apellido);
+
+	public Empleado selecionarPorApellidoNombre(String nombre);
+
 }

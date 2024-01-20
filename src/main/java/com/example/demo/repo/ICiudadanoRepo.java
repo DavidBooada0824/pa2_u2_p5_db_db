@@ -17,4 +17,23 @@ public interface ICiudadanoRepo {
 
 	public Ciudadano selecionarPorCedulaCiu(String cedula);
 
+	// Named
+	public Ciudadano selecionarPorApellidoNamed(String apellido);
+
+	public Ciudadano selecionarPorNombreNamed(String nombre);
+
+	public Ciudadano selecionarPorCedulaNamed(String cedula);
+
+	// Native
+
+	public Ciudadano selecionarPorApellidoNative(String apellido);
+
+	public Ciudadano selecionarPorNombreNative(String nombre);
+
+	public Ciudadano selecionarPorEdadNative(String edad);
+
+	public Ciudadano selecionarPorHobbieNative(String hobbie);
+
+	public Ciudadano selecionarPorGeneroNative(String genero);
+
 }
