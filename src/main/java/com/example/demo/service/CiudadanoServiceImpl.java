@@ -96,4 +96,22 @@ public class CiudadanoServiceImpl implements ICiudadanoService {
 		return this.iCiudadanoRepo.selecionarPorGeneroNative(genero);
 	}
 
+	@Override
+	public Ciudadano buscarPorApellidoCriteria(String apellido) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepo.seleccionarPorApellidoCriteria(apellido);
+	}
+
+	@Override
+	public Ciudadano buscarPorCriteria(String nombre, String apellido, String cedula) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepo.seleccionarPorCriteria(nombre, apellido, cedula);
+	}
+
+	@Override
+	public Ciudadano buscarPorCriteriaAndOr(String nombre, String apellido, String cedula) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepo.seleccionarPorCriteriaAndOr(nombre, apellido, cedula);
+	}
+
 }

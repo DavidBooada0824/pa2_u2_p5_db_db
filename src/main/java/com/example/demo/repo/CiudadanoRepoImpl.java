@@ -9,6 +9,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 
 @Repository
@@ -126,6 +130,97 @@ public class CiudadanoRepoImpl implements ICiudadanoRepo {
 		myQuery.setParameter("DatoGenero", genero);
 
 		return (Ciudadano) myQuery.getSingleResult();
+	}
+
+	@Override
+	public Ciudadano seleccionarPorApellidoCriteria(String apellido) {
+		// paso 0creamos una instancia de la interface CriteriaBuilder apartir de un
+		// EntityManager
+		CriteriaBuilder myCriteriaBuilder = this.entityManager.getCriteriaBuilder();
+		// paso1 especificar el tipo deretorno de mi Consulta
+		CriteriaQuery<Ciudadano> mycCriteriaQuery = myCriteriaBuilder.createQuery(Ciudadano.class);
+		// 2.Construir el SQÑ
+		// 2.1Determinmos el from (Root)
+		// no necesariamente el from no es igual al tipo de retorno
+		Root<Ciudadano> myFrom = mycCriteriaQuery.from(Ciudadano.class);
+		// 2.2 Construir las condiciones (Where) del sql
+		// En Criteria Api Query se les conoce como Predicate
+		// c,apellido =:variable
+		Predicate condicionApellido = myCriteriaBuilder.equal(myFrom.get("apellido"), apellido);
+		// 3 Construimos el SQL final
+		mycCriteriaQuery.select(myFrom).where(condicionApellido);
+		// 4 ejecutamos la consulta con un TypedQuery
+
+		TypedQuery<Ciudadano> myTypedQuery = this.entityManager.createQuery(mycCriteriaQuery);
+
+		return myTypedQuery.getSingleResult();
+	}
+
+	@Override
+	public Ciudadano seleccionarPorCriteria(String nombre, String apellido, String cedula) {
+
+		// o creamos una instancia de la interface CriteriaBuilder apartir de un
+		// EntityManager
+		CriteriaBuilder myCriteriaBuilder = this.entityManager.getCriteriaBuilder();
+		// paso1 especificar el tipo deretorno de mi Consulta
+		CriteriaQuery<Ciudadano> mycCriteriaQuery = myCriteriaBuilder.createQuery(Ciudadano.class);
+		// 2.Construir el SQÑ
+		// 2.1Determinmos el from (Root)
+		// no necesariamente el from no es igual al tipo de retorno
+		Root<Ciudadano> myFrom = mycCriteriaQuery.from(Ciudadano.class);
+		// 2.2 Construir las condiciones (Where) del sql
+		// En Criteria Api Query se les conoce como Predicate
+
+		Predicate condicionGenererica = null;
+
+		if (cedula.startsWith("17")) {
+			condicionGenererica = myCriteriaBuilder.equal(myFrom.get("nombre"), nombre);
+		} else if (cedula.startsWith("05")) {
+			condicionGenererica = myCriteriaBuilder.equal(myFrom.get("apellido"), apellido);
+		} else {
+			condicionGenererica = myCriteriaBuilder.equal(myFrom.get("cedula"), cedula);
+		}
+
+		// construimos el SQL Final
+
+		mycCriteriaQuery.select(myFrom).where(condicionGenererica);
+
+		TypedQuery<Ciudadano> myTypedQuery = this.entityManager.createQuery(mycCriteriaQuery);
+
+		return myTypedQuery.getSingleResult();
+	}
+	@Override
+	public Ciudadano seleccionarPorCriteriaAndOr(String nombre, String apellido, String cedula) {
+
+		// o creamos una instancia de la interface CriteriaBuilder apartir de un
+		// EntityManager
+		CriteriaBuilder myCriteriaBuilder = this.entityManager.getCriteriaBuilder();
+		// paso1 especificar el tipo deretorno de mi Consulta
+		CriteriaQuery<Ciudadano> mycCriteriaQuery = myCriteriaBuilder.createQuery(Ciudadano.class);
+		// 2.Construir el SQÑ
+		// 2.1Determinmos el from (Root)
+		// no necesariamente el from no es igual al tipo de retorno
+		Root<Ciudadano> myFrom = mycCriteriaQuery.from(Ciudadano.class);
+		// 2.2 Construir las condiciones (Where) del sql
+		// En Criteria Api Query se les conoce como Predicate
+
+		Predicate condicionTotal = null;
+		Predicate codicionNombre = myCriteriaBuilder.equal(myFrom.get("nombre"), nombre);
+		Predicate codicionApellido = myCriteriaBuilder.equal(myFrom.get("apellido"), apellido);
+
+		if (cedula.startsWith("17")) {
+			condicionTotal = myCriteriaBuilder.or(codicionNombre,codicionApellido);
+		} else if (cedula.startsWith("05")) {
+			condicionTotal = myCriteriaBuilder.and(codicionNombre,codicionApellido);
+		} 
+
+		// construimos el SQL Final
+
+		mycCriteriaQuery.select(myFrom).where(condicionTotal);
+
+		TypedQuery<Ciudadano> myTypedQuery = this.entityManager.createQuery(mycCriteriaQuery);
+
+		return myTypedQuery.getSingleResult();
 	}
 
 }

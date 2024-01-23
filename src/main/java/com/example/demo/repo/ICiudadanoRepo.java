@@ -36,4 +36,16 @@ public interface ICiudadanoRepo {
 
 	public Ciudadano selecionarPorGeneroNative(String genero);
 
+	// criteria
+
+	public Ciudadano seleccionarPorApellidoCriteria(String apellido);
+
+	// necesitro una funcionalidad cuando sea de pichincha lo busque por nombre
+	// cuando sea de cotopaxi lo busque por apellido
+	// cuando no sea ninguna de las dos lo busque por cedula
+
+	public Ciudadano seleccionarPorCriteria(String nombre, String apellido, String cedula);
+
+	public Ciudadano seleccionarPorCriteriaAndOr(String nombre, String apellido, String cedula);
+
 }
