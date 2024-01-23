@@ -17,31 +17,21 @@ public interface ICiudadanoService {
 
 	public Ciudadano selecionarPorCedulaCiu(String cedula);
 
-	// Named
-	public Ciudadano buscarPorApellidoNamed(String apellido);
-
-	public Ciudadano buscarPorNombreNamed(String nombre);
-
-	public Ciudadano buscarPorCedulaNamed(String cedula);
-
-	// Native
-
-	public Ciudadano buscarPorApellidoNative(String apellido);
-
-	public Ciudadano buscarPorNombreNative(String nombre);
-
-	public Ciudadano buscarPorEdadNative(String edad);
-
-	public Ciudadano buscarPorHobbieNative(String hobbie);
-
-	public Ciudadano buscarPorGeneroNative(String genero);
-
 	// criteria
-
-	public Ciudadano buscarPorApellidoCriteria(String apellido);
 
 	public Ciudadano buscarPorCriteria(String nombre, String apellido, String cedula);
 
 	public Ciudadano buscarPorCriteriaAndOr(String nombre, String apellido, String cedula);
 
+	// deber
+
+	public Ciudadano buscarEdadGeneroPorCriteria(String edad, String genero, String cedula);
+
+	public Ciudadano buscarApellidoHobbiePorCriteria(String apellido, String hobbie, String cedula);
+
+	public Ciudadano buscarEdadGeneroPorCriteriaAndOr(String edad, String genero, String cedula);
+
+	public Ciudadano buscarApellidoHobbiePorCriteriaAndOr(String apellido, String hobbie, String cedula);
+
+	public Ciudadano buscarNombrePorCriteriaAndOr(String nombre, String hobbie, String cedula);
 }

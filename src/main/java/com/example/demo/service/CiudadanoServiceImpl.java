@@ -49,60 +49,6 @@ public class CiudadanoServiceImpl implements ICiudadanoService {
 	}
 
 	@Override
-	public Ciudadano buscarPorApellidoNamed(String apellido) {
-
-		return this.iCiudadanoRepo.selecionarPorApellidoNamed(apellido);
-	}
-
-	@Override
-	public Ciudadano buscarPorNombreNamed(String nombre) {
-		// TODO Auto-generated method stub
-		return this.iCiudadanoRepo.selecionarPorNombreNamed(nombre);
-	}
-
-	@Override
-	public Ciudadano buscarPorCedulaNamed(String cedula) {
-		// TODO Auto-generated method stub
-		return this.iCiudadanoRepo.selecionarPorCedulaNamed(cedula);
-	}
-
-	@Override
-	public Ciudadano buscarPorApellidoNative(String apellido) {
-		// TODO Auto-generated method stub
-		return this.iCiudadanoRepo.selecionarPorApellidoNative(apellido);
-	}
-
-	@Override
-	public Ciudadano buscarPorNombreNative(String nombre) {
-		// TODO Auto-generated method stub
-		return this.iCiudadanoRepo.selecionarPorNombreNative(nombre);
-	}
-
-	@Override
-	public Ciudadano buscarPorEdadNative(String edad) {
-		// TODO Auto-generated method stub
-		return this.iCiudadanoRepo.selecionarPorEdadNative(edad);
-	}
-
-	@Override
-	public Ciudadano buscarPorHobbieNative(String hobbie) {
-		// TODO Auto-generated method stub
-		return this.iCiudadanoRepo.selecionarPorHobbieNative(hobbie);
-	}
-
-	@Override
-	public Ciudadano buscarPorGeneroNative(String genero) {
-		// TODO Auto-generated method stub
-		return this.iCiudadanoRepo.selecionarPorGeneroNative(genero);
-	}
-
-	@Override
-	public Ciudadano buscarPorApellidoCriteria(String apellido) {
-		// TODO Auto-generated method stub
-		return this.iCiudadanoRepo.seleccionarPorApellidoCriteria(apellido);
-	}
-
-	@Override
 	public Ciudadano buscarPorCriteria(String nombre, String apellido, String cedula) {
 		// TODO Auto-generated method stub
 		return this.iCiudadanoRepo.seleccionarPorCriteria(nombre, apellido, cedula);
@@ -112,6 +58,37 @@ public class CiudadanoServiceImpl implements ICiudadanoService {
 	public Ciudadano buscarPorCriteriaAndOr(String nombre, String apellido, String cedula) {
 		// TODO Auto-generated method stub
 		return this.iCiudadanoRepo.seleccionarPorCriteriaAndOr(nombre, apellido, cedula);
+	}
+	/// Deber
+
+	@Override
+	public Ciudadano buscarEdadGeneroPorCriteria(String edad, String genero, String cedula) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepo.seleccionarEdadGeneroPorCriteria(edad, genero, cedula);
+	}
+
+	@Override
+	public Ciudadano buscarApellidoHobbiePorCriteria(String apellido, String hobbie, String cedula) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepo.seleccionarApellidoHobbiePorCriteria(apellido, hobbie, cedula);
+	}
+
+	@Override
+	public Ciudadano buscarEdadGeneroPorCriteriaAndOr(String edad, String genero, String cedula) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepo.seleccionarEdadGeneroPorCriteriaAndOr(edad, genero, cedula);
+	}
+
+	@Override
+	public Ciudadano buscarApellidoHobbiePorCriteriaAndOr(String apellido, String hobbie, String cedula) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepo.seleccionarApellidoHobbiePorCriteriaAndOr(apellido, hobbie, cedula);
+	}
+
+	@Override
+	public Ciudadano buscarNombrePorCriteriaAndOr(String nombre, String hobbie, String cedula) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoRepo.seleccionarNombrePorCriteriaAndOr(nombre, hobbie, cedula);
 	}
 
 }

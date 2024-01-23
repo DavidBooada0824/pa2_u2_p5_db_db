@@ -45,28 +45,22 @@ public class Pa2U2P5DbDbApplication implements CommandLineRunner {
 		emple.setSalario(new BigDecimal(1200));
 		emple.setCiudadano(ciu);
 
-		// this.iEmpleadoService.ingresar(emple);
+		System.out.println("Deber 10");
+		Ciudadano ciu1 = this.iCiudadanoService.buscarEdadGeneroPorCriteria("18", "masculino", "1720030723");
+		System.out.println("\t" + ciu1 + "\n");
 
-		Ciudadano ciu3 = this.iCiudadanoService.buscarPorApellidoCriteria("Boada");
-		System.err.println("CriteriaQuery");
-		System.out.println("" + ciu3+"\n");
-		Ciudadano ciu4 = this.iCiudadanoService.buscarPorCriteria("David", "Boada", "1720030723");
-		System.out.println("\t" + ciu4+"\n");
-		
-		Ciudadano ciu5 = this.iCiudadanoService.buscarPorCriteria("David", "Boada", "0520030723");
-		System.out.println("\t" + ciu5+"\n");
-		
-//		Ciudadano ciu6 = this.iCiudadanoService.buscarPorCriteria("David", "Boada", "0620030723");
-//		System.out.println("\t" + ciu6);
-		System.err.println("CriteriaQueryAndOr");
-		Ciudadano ciu6 =this.iCiudadanoService.buscarPorCriteriaAndOr("David", "Boada", "1720030723");
-		System.out.println("\t" + ciu6+"\n");
-		
-		Ciudadano ciu7 =this.iCiudadanoService.buscarPorCriteriaAndOr("David", "Boada", "0520030723");
-		System.out.println("\t" + ciu7+"\n");
-		
-		
-		
+		Ciudadano ciu2 = this.iCiudadanoService.buscarApellidoHobbiePorCriteria("Boada", "basquet", "1720030723");
+		System.out.println("\t" + ciu2 + "\n");
+
+		Ciudadano ciu3 = this.iCiudadanoService.buscarEdadGeneroPorCriteriaAndOr("18", "masculino", "1720030723");
+		System.out.println("\t" + ciu3 + "\n");
+
+		Ciudadano ciu4 = this.iCiudadanoService.buscarApellidoHobbiePorCriteriaAndOr("Boada", "basquet", "1720030723");
+		System.out.println("\t" + ciu4 + "\n");
+
+		Ciudadano ciu5 = this.iCiudadanoService.buscarNombrePorCriteriaAndOr("David", "basquet", "1720030723");
+		System.out.println("\t" + ciu5 + "\n");
+
 	}
 
 }

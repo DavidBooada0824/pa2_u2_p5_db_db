@@ -17,29 +17,6 @@ public interface ICiudadanoRepo {
 
 	public Ciudadano selecionarPorCedulaCiu(String cedula);
 
-	// Named
-	public Ciudadano selecionarPorApellidoNamed(String apellido);
-
-	public Ciudadano selecionarPorNombreNamed(String nombre);
-
-	public Ciudadano selecionarPorCedulaNamed(String cedula);
-
-	// Native
-
-	public Ciudadano selecionarPorApellidoNative(String apellido);
-
-	public Ciudadano selecionarPorNombreNative(String nombre);
-
-	public Ciudadano selecionarPorEdadNative(String edad);
-
-	public Ciudadano selecionarPorHobbieNative(String hobbie);
-
-	public Ciudadano selecionarPorGeneroNative(String genero);
-
-	// criteria
-
-	public Ciudadano seleccionarPorApellidoCriteria(String apellido);
-
 	// necesitro una funcionalidad cuando sea de pichincha lo busque por nombre
 	// cuando sea de cotopaxi lo busque por apellido
 	// cuando no sea ninguna de las dos lo busque por cedula
@@ -47,5 +24,17 @@ public interface ICiudadanoRepo {
 	public Ciudadano seleccionarPorCriteria(String nombre, String apellido, String cedula);
 
 	public Ciudadano seleccionarPorCriteriaAndOr(String nombre, String apellido, String cedula);
+
+	// Deber
+
+	public Ciudadano seleccionarEdadGeneroPorCriteria(String edad, String genero, String cedula);
+
+	public Ciudadano seleccionarApellidoHobbiePorCriteria(String apellido, String hobbie, String cedula);
+
+	public Ciudadano seleccionarEdadGeneroPorCriteriaAndOr(String edad, String genero, String cedula);
+
+	public Ciudadano seleccionarApellidoHobbiePorCriteriaAndOr(String apellido, String hobbie, String cedula);
+
+	public Ciudadano seleccionarNombrePorCriteriaAndOr(String nombre, String hobbie, String cedula);
 
 }
